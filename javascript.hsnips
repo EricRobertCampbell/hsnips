@@ -1,3 +1,15 @@
-snippet abc "testing"
-this is some test text
+snippet jk "Opening and Closing HTML Tag" i
+<$1>
+    $2
+``rv = '</' + t.join('').split(' ')[0] + '>'`` 
+endsnippet
+
+snippet jkk "Self-closing HTML tag" i
+<$1 />$0
+endsnippet
+
+snippet mk "Arrow function" w
+($1) => {
+    $2
+}$0
 endsnippet

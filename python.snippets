@@ -1,0 +1,133 @@
+snippet sb "she bang" b
+#!/usr/bin/env python3
+endsnippet
+
+snippet 'imp?o?r?t?' "import" rb
+import $1
+endsnippet
+
+snippet 'from?' "import from" rb
+from $1 import $2
+endsnippet
+
+snippet def "define a function" w
+def ${1:Name}(${2:args}) -> ${3:Return Type}:
+	$4
+endsnippet
+
+snippet if "if" b
+if $1:
+	$2
+endsnippet
+
+snippet for "for loop" b
+for $1 in $2:
+	$3
+endsnippet
+
+snippet while "while loop" b
+while $1:
+	$2
+endsnippet
+
+
+# Testing - unittest
+
+
+# Testing - unittest - Django / Graphene
+snippet 'test?' "Basic test" rb
+def test_$1(self) -> None:
+	"""$2"""
+	self.assertEqual(True, False, f"I am a placeholder - replace me with a real test!")
+endsnippet
+
+snippet 'test[Cc]la?s?s?' "Basic test class" r
+class Test$1(unittest.TestCase):
+	"""$2"""
+	def setUp(self):
+		pass
+	def tearDown(self):
+		pass
+	$3
+endsnippet
+
+snippet 'grap?h?e?n?e?test?' "Test function (Django / Graphene)" rb
+def test_$1(self) -> None:
+	"""$2"""
+	query_variables = {
+	}
+	response = self.query(
+		self.query_string, op_name="myModel", variables=query_variables)
+	decoded = json.loads(response.content)
+	${3:self.assertEqual(True, False, "I am a placeholder - replace me with a real test!")}
+endsnippet
+
+snippet 'gratest[cC]l?a?s?s?' "Test class / suite" rb
+class $1(GraphQLTestCase):
+	GRAPHQL_SCHEMA = schema
+
+	@classmethod
+	def setUpClass(cls):
+		super($1, cls).setUpClass()
+		cls.query_string = """
+			$2
+				"""
+		generate_fixture()
+endsnippet
+
+snippet ae "self.assertEqual" b
+self.assertEqual($1, $2, f"$3")$0
+endsnippet
+
+snippet at "self.assertTrue" b
+self.assertTrue($1, f"$2")$0
+endsnippet
+
+snippet af "self.assertFalse" b
+self.assertFalse($1, f"$2")$0
+endsnippet
+
+snippet aii "self.assertIsInstance" b
+self.assertIsInstance($1, $2, f"$3")$0
+endsnippet
+
+snippet ai "self.assertIn" b
+self.assertIn($1, $2, f"$3")$0
+endsnippet
+
+snippet ain "self.assertIsNone" b
+self.assertIsNone($1, f"$2")$0
+endsnippet
+
+snippet ais "self.assertIs" b
+self.assertIs($1, $2, f"$3")$0
+endsnippet
+
+snippet 's?e?l?f?\.?ainn' "self.assertIsNotNone" wr
+self.assertIsNotNone($1, f"$2")$3
+endsnippet
+
+snippet ag "self.assertGreater" b
+self.assertGreater($1, $2, f"$3")$4
+endsnippet
+
+# specific snippets for query testing
+snippet gr "Test for a good response" b
+self.assertEqual(response.status_code, 200, f"Unexpected status code for syntactically good query: {decoded}")
+endsnippet
+
+snippet br "Test for a bad response" b
+self.assertEqual(response.status_code, 400, f"Unexpected status code for syntactically bad query: {decoded}")
+endsnippet
+
+snippet data "Test for existence of 'data' key in the response" b
+self.assertIn('data', decoded, f"Lack of 'data' key in response: {decoded}")
+endsnippet
+
+snippet 'erro?r?s?' "Test for existence of 'error' key in the response" rb
+self.assertIn('errors', decoded, f"Unexpected lack of 'errors' key in response to bad query: {decoded}")
+endsnippet
+
+snippet 'noerr?o?r?' "Test for lack of 'error' key in response" rb
+self.assertNotIn('errors', decoded, f"Unexpected 'errors' key found in response to valid query: {decoded}")
+endsnippet
