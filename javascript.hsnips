@@ -1,3 +1,6 @@
+# Original file from https://github.com/ericdouglas/UltiSnips.git
+
+############# MISC
 snippet jk "Opening and Closing HTML Tag" i
 <$1>
     $2
@@ -8,8 +11,405 @@ snippet jkk "Self-closing HTML tag" i
 <$1 />$0
 endsnippet
 
-snippet mk "Arrow function" w
+snippet for "for" i
+for ($1) {
+	$2
+}$3
+endsnippet
+
+snippet while "while" i
+while ($1) {
+	$2
+}$3
+endsnippet
+
+snippet do "do...while" b
+do {
+	$1
+} while ($2);
+endsnippet
+
+snippet try "try...catch block" b
+try {
+	$1
+} catch {
+	$2
+}$3
+endsnippet
+
+priority -1
+snippet c "curly braces with identation" i 
+{
+	$1
+}
+endsnippet
+priority 0
+
+snippet fn "named function" i
+function $1($2) {
+	$3
+}$4
+endsnippet
+
+snippet ff "anonymous function" i
+function($1) {
+	$2
+}$3
+endsnippet
+
+snippet mk "arrow function" iA
 ($1) => {
-    $2
+	$2
+}$3
+endsnippet
+
+snippet fa "one line arrow function" i
+($1) => $2
+endsnippet
+
+snippet cl "console.log(...)" i
+console.log($1)
+endsnippet
+
+snippet clj "console.log JSON.stringify formatted" i
+console.log(JSON.stringify($1, null, 2))
+endsnippet
+
+snippet js "JSON.stringify, formatted" i
+JSON.stringify($1, null, 4)$0
+endsnippet
+
+snippet if "if statement" b
+if ($1) {
+	$2
 }$0
+endsnippet
+
+snippet 'els?e?' "else statement" br
+else {
+	$1
+}$2
+endsnippet
+
+snippet elif "else if" w
+else if ($1) {
+	$2
+} $0
+endsnippet
+
+snippet iife "Immediately-invoked function expression"
+(function() {
+  'use strict';
+
+  $1
+})();
+endsnippet
+
+
+############# React, &c.
+priority 1
+
+snippet ed "Export default"
+export default $1;
+endsnippet
+
+snippet ex "Export" b
+export $1;
+endsnippet
+
+snippet 'imp?o?r?t?' "Import" rb
+import $1 from '$2';
+endsnippet
+
+snippet ir "import react"
+import React, { useState, useEffect } from 'react';
+endsnippet
+
+snippet rfc "React functional component"
+const $1 = ($2) => {
+	$3
+};
+
+export default $1;
+endsnippet
+
+
+priority 0
+############# Node.js
+snippet re "require" b
+const `!p
+def formatVariableName(path):
+  if path == 'react/addons':
+    return 'React'
+
+  lastPart = path.split('/')[-1]
+
+  if lastPart == 'lodash':
+    return '_'
+  elif lastPart == 'jquery':
+    return '$'
+  else:
+    return re.sub(r'[_\-]', '', lastPart.title())
+
+snip.rv = formatVariableName(t[1])
+` = require('${1}')$0
+endsnippet
+
+snippet me "module.exports" b
+module.exports = $0
+endsnippet
+
+snippet ee "exports"
+exports = $0
+endsnippet
+
+snippet rr "just require"
+require('$1')
+endsnippet
+
+snippet vr "ES5 require"
+var $1 = require('$1')
+endsnippet
+
+############# JSDoc
+snippet ds "JS Function Docstring" b
+/**
+* ${1:DESCRIPTION OF FUNCTION}
+* ${2:@param {type} name - description}
+* ${3:@returns {type} - description}
+*/
+endsnippet
+
+snippet cm
+/**
+ * ${0:${VISUAL}}
+ */
+endsnippet
+
+snippet pr "@param {...}"
+@param {${2:type}} ${1:name} - ${3:description}
+endsnippet
+
+snippet rt "@return {...}"
+@return {${1:type}} - ${2:description}
+endsnippet
+
+snippet ct "@constructor"
+@constructor
+endsnippet
+
+############# Tests / Testing
+##### jest
+snippet 'test?' "add test" br
+test('Should $1', () => {
+  $2
+});$0
+endsnippet
+
+snippet 'it' "add test" br
+it('Should $1', () => {
+  $2
+});$0
+endsnippet
+
+snippet 'skip|it.sk?i?p?' "Test to skip (for now...)" rb
+it.skip('Should $1', () => {
+  $2
+});$0
+endsnippet
+
+snippet 'todo|test.to?d?o?' "add jest todo test" rb
+test.todo('Should $1');$0
+endsnippet
+
+
+snippet 'desc?r?i?b?e?' "describe a test suite" br
+describe('$1', () => {
+  $2
+});$0
+endsnippet
+
+
+snippet ae "afterEach" b
+afterEach(function($1) {
+  $2
+})$0
+endsnippet
+
+snippet be "beforeEach" b
+beforeEach(function($1) {
+  $2
+})$0
+endsnippet
+
+snippet 'expe?c?t?' "expect" rb
+expect($1).$2;
+endsnippet
+##### end jest
+
+##### begin react-testing-library
+snippet 'bid' "Be In The Document" i
+beInTheDocument();
+endsnippet
+
+#####
+
+##### Cypress #####
+
+snippet '\.?exis?t?' ".should('exist')" r
+.should('exist')$0
+endsnippet
+
+snippet '\.?shou?l?d?' ".should" r
+.should($1)$0
+endsnippet
+
+snippet '\.?c?l?ick' ".click()" r
+.click($1)$0
+endsnippet
+
+snippet 'c?y?\.?fbt' "cy.findByText(/ /i)" r
+cy.findByText(/$1/i)$0
+endsnippet
+
+snippet 'c?y?\.?fabt' "cy.findAllByText(/ /i)" r
+cy.findAllByText(/$1/i)$0
+endsnippet
+
+snippet 'c?y?\.?fblt' "cy.findByLabelText(/ /i)" r
+cy.findByLabelText(/$1/i)$0
+endsnippet
+
+snippet 'c?y?\.?fbr' "cy.findByRole()" r
+cy.findByRole('$1', ${2:{name: }})$0
+endsnippet
+
+###################
+
+############# ES6
+snippet im "import" b
+import `!p
+def formatVariableName(path):
+  if path == 'react':
+    return 'React'
+
+  lastPart = path.split('/')[-1]
+  if lastPart == 'lodash':
+    return '_'
+  elif lastPart == 'jquery':
+    return '$'
+  else:
+    return re.sub(r'[_\-]', '', lastPart.title())
+snip.rv = formatVariableName(t[1])
+` from '${1}'$0
+endsnippet
+
+snippet ed "export default"
+export default $1
+endsnippet
+
+############# Angular 1.x
+snippet ng "angular structure" b
+(function() {
+
+  'use strict';
+
+  angular
+    .module('$1')
+    .$2('$3', $3);
+
+  $3.$inject = [];
+
+  function $3() {
+    var vm = this;$4
+
+    ///////////// Public Properties
+
+    ///////////// Private Properties
+
+    ///////////// Public Methods
+
+    ///////////// Private Methods
+
+    ///////////// Events
+
+    ///////////// Bootstrap
+
+    ///////////// Function Declarations
+  }
+})();
+endsnippet
+
+snippet ngm "angular module" b
+(function() {
+  
+  'use strict';
+
+  angular
+    .module('$1', [$2]);
+})();
+endsnippet
+
+snippet ngd "angular directive" b
+(function() {
+
+  'use strict';
+
+  angular
+    .module('$1')
+    .directive('$3', $3);
+
+  $3.$inject = [];
+
+  function $3($4) {
+    return {
+      $5
+    };
+  }
+
+})();
+endsnippet
+
+snippet ngdc "angular directive using controller" b
+(function() {
+
+  'use strict';
+
+  angular
+    .module('$1')
+    .directive('$3', $3);
+
+  $3.$inject = [];
+
+  function $3($4) {
+    return {
+      restrict: 'EA',
+      transclude: false,
+      controller: controller,
+      controllerAs: 'vm',
+      bindToController: true,
+      templateUrl: '',
+      scope: {$5}
+    };
+  }
+
+  function controller() {
+    var vm = this;
+
+    ///////////// Properties
+
+    ///////////// Methods
+
+    ///////////// Function Declarations
+  }
+
+})();
+endsnippet
+
+snippet cln "angular console.log" b
+$log.log('$1');$2
+endsnippet
+
+snippet cljn "angular console.log + JSON.stringify" b
+$log.log(JSON.stringify($1, null, 2));$2
 endsnippet
